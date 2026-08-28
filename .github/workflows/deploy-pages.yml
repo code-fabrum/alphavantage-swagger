@@ -26,9 +26,11 @@ jobs:
 
       - name: Build Pages artifact
         run: |
+          ruby scripts/build-openapi-json.rb openapi.yaml openapi.json
           mkdir -p _site
           cp docs/index.html _site/index.html
           cp openapi.yaml _site/openapi.yaml
+          cp openapi.json _site/openapi.json
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

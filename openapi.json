@@ -1,0 +1,1643 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Alpha Vantage API",
+    "description": "OpenAPI specification for Alpha Vantage financial market data APIs.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://www.alphavantage.co",
+      "description": "Alpha Vantage production server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": [
+
+      ]
+    }
+  ],
+  "paths": {
+    "/query/daily": {
+      "get": {
+        "summary": "Daily Time Series",
+        "description": "Returns daily open, high, low, close, and volume data for the specified stock symbol.",
+        "operationId": "getDailyTimeSeries",
+        "tags": [
+          "Time Series"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionDaily"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/outputsize"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/DailyTimeSeriesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        },
+        "x-ms-connector-name": "AlphaVantageDailyTimeSeries"
+      }
+    },
+    "/query/intraday": {
+      "get": {
+        "summary": "Intraday Time Series",
+        "description": "Returns intraday prices for a symbol and interval.",
+        "operationId": "getIntradayTimeSeries",
+        "tags": [
+          "Time Series"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionIntraday"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          },
+          {
+            "$ref": "#/components/parameters/adjusted"
+          },
+          {
+            "$ref": "#/components/parameters/extended_hours"
+          },
+          {
+            "$ref": "#/components/parameters/month"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/IntradayTimeSeriesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/weekly": {
+      "get": {
+        "summary": "Weekly Time Series",
+        "description": "Returns weekly adjusted time series data for the specified stock symbol.",
+        "operationId": "getWeeklyTimeSeries",
+        "tags": [
+          "Time Series"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionWeekly"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/WeeklyTimeSeriesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/monthly": {
+      "get": {
+        "summary": "Monthly Time Series",
+        "description": "Returns monthly adjusted time series data for the specified stock symbol.",
+        "operationId": "getMonthlyTimeSeries",
+        "tags": [
+          "Time Series"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionMonthly"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MonthlyTimeSeriesResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/sma": {
+      "get": {
+        "summary": "SMA Indicator",
+        "description": "Returns the SMA technical indicator for the specified symbol and interval.",
+        "operationId": "getSmaIndicator",
+        "tags": [
+          "Technical Indicators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionSma"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          },
+          {
+            "$ref": "#/components/parameters/time_period"
+          },
+          {
+            "$ref": "#/components/parameters/series_type"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TechnicalIndicatorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/ema": {
+      "get": {
+        "summary": "EMA Indicator",
+        "description": "Returns the EMA technical indicator for the specified symbol and interval.",
+        "operationId": "getEmaIndicator",
+        "tags": [
+          "Technical Indicators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionEma"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          },
+          {
+            "$ref": "#/components/parameters/time_period"
+          },
+          {
+            "$ref": "#/components/parameters/series_type"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TechnicalIndicatorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/rsi": {
+      "get": {
+        "summary": "RSI Indicator",
+        "description": "Returns the RSI technical indicator for the specified symbol and interval.",
+        "operationId": "getRsiIndicator",
+        "tags": [
+          "Technical Indicators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionRsi"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          },
+          {
+            "$ref": "#/components/parameters/time_period"
+          },
+          {
+            "$ref": "#/components/parameters/series_type"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TechnicalIndicatorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/macd": {
+      "get": {
+        "summary": "MACD Indicator",
+        "description": "Returns moving average convergence divergence indicators for the specified symbol.",
+        "operationId": "getMacdIndicator",
+        "tags": [
+          "Technical Indicators"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionMacd"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          },
+          {
+            "$ref": "#/components/parameters/series_type"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TechnicalIndicatorResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/overview": {
+      "get": {
+        "summary": "Company Overview",
+        "description": "Returns key company information and financial metrics for the specified stock symbol.",
+        "operationId": "getCompanyOverview",
+        "tags": [
+          "Fundamentals"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionOverview"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CompanyOverviewResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/earnings": {
+      "get": {
+        "summary": "Earnings",
+        "description": "Returns annual and quarterly earnings data for the specified company.",
+        "operationId": "getEarnings",
+        "tags": [
+          "Fundamentals"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionEarnings"
+          },
+          {
+            "$ref": "#/components/parameters/symbol"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/EarningsResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/news-sentiment": {
+      "get": {
+        "summary": "News Sentiment",
+        "description": "Returns news articles and sentiment analysis for the specified tickers.",
+        "operationId": "getNewsSentiment",
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionNewsSentiment"
+          },
+          {
+            "$ref": "#/components/parameters/tickers"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/sort"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/NewsSentimentResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/top-gainers-losers": {
+      "get": {
+        "summary": "Top Gainers and Losers",
+        "description": "Returns the top gainers, losers, and most actively traded stocks.",
+        "operationId": "getTopGainersLosers",
+        "tags": [
+          "Market Overview"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionTopMovers"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/TopMoversResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/sector": {
+      "get": {
+        "summary": "Sector Performance",
+        "description": "Returns real-time sector performance for major industry groups.",
+        "operationId": "getSectorPerformance",
+        "tags": [
+          "Market Overview"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionSector"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/SectorPerformanceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/query/market-status": {
+      "get": {
+        "summary": "Market Status",
+        "description": "Returns open or closed status for markets across regions.",
+        "operationId": "getMarketStatus",
+        "tags": [
+          "Market Overview"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/functionMarketStatus"
+          },
+          {
+            "$ref": "#/components/parameters/apikey"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/MarketStatusResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimitExceeded"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apikey",
+        "description": "API key used to authenticate requests."
+      }
+    },
+    "parameters": {
+      "functionDaily": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TIME_SERIES_DAILY"
+          ],
+          "default": "TIME_SERIES_DAILY"
+        }
+      },
+      "functionIntraday": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The intraday function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TIME_SERIES_INTRADAY"
+          ],
+          "default": "TIME_SERIES_INTRADAY"
+        }
+      },
+      "functionWeekly": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TIME_SERIES_WEEKLY"
+          ],
+          "default": "TIME_SERIES_WEEKLY"
+        }
+      },
+      "functionMonthly": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TIME_SERIES_MONTHLY"
+          ],
+          "default": "TIME_SERIES_MONTHLY"
+        }
+      },
+      "functionSma": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "SMA"
+          ],
+          "default": "SMA"
+        }
+      },
+      "functionEma": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "EMA"
+          ],
+          "default": "EMA"
+        }
+      },
+      "functionRsi": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "RSI"
+          ],
+          "default": "RSI"
+        }
+      },
+      "functionMacd": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "MACD"
+          ],
+          "default": "MACD"
+        }
+      },
+      "functionOverview": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "OVERVIEW"
+          ],
+          "default": "OVERVIEW"
+        }
+      },
+      "functionEarnings": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "EARNINGS"
+          ],
+          "default": "EARNINGS"
+        }
+      },
+      "functionNewsSentiment": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "NEWS_SENTIMENT"
+          ],
+          "default": "NEWS_SENTIMENT"
+        }
+      },
+      "functionTopMovers": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "TOP_GAINERS_LOSERS"
+          ],
+          "default": "TOP_GAINERS_LOSERS"
+        }
+      },
+      "functionSector": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "SECTOR"
+          ],
+          "default": "SECTOR"
+        }
+      },
+      "functionMarketStatus": {
+        "name": "function",
+        "in": "query",
+        "required": true,
+        "description": "The function to execute.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "MARKET_STATUS"
+          ],
+          "default": "MARKET_STATUS"
+        }
+      },
+      "symbol": {
+        "name": "symbol",
+        "in": "query",
+        "required": true,
+        "description": "Stock symbol to query, for example SPY, AAPL, MSFT, or NVDA.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "outputsize": {
+        "name": "outputsize",
+        "in": "query",
+        "description": "Output size for daily data. Compact returns the latest 100 points; full returns the full-length time series.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "compact",
+            "full"
+          ],
+          "default": "compact"
+        }
+      },
+      "interval": {
+        "name": "interval",
+        "in": "query",
+        "description": "The time interval for intraday or technical indicator data.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "1min",
+            "5min",
+            "15min",
+            "30min",
+            "60min",
+            "daily",
+            "weekly",
+            "monthly"
+          ]
+        }
+      },
+      "adjusted": {
+        "name": "adjusted",
+        "in": "query",
+        "description": "Whether to return adjusted pricing data.",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "extended_hours": {
+        "name": "extended_hours",
+        "in": "query",
+        "description": "Whether to include extended-hours trading sessions.",
+        "schema": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "month": {
+        "name": "month",
+        "in": "query",
+        "description": "Intraday month filter in YYYY-MM format.",
+        "schema": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$"
+        }
+      },
+      "time_period": {
+        "name": "time_period",
+        "in": "query",
+        "required": true,
+        "description": "Number of data points used to calculate the technical indicator.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 20
+        }
+      },
+      "series_type": {
+        "name": "series_type",
+        "in": "query",
+        "description": "The type of price series used to calculate the indicator.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "close",
+            "open",
+            "high",
+            "low"
+          ],
+          "default": "close"
+        }
+      },
+      "tickers": {
+        "name": "tickers",
+        "in": "query",
+        "required": true,
+        "description": "Comma-separated stock tickers to include in news sentiment filtering.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Maximum number of news items to return.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 10
+        }
+      },
+      "sort": {
+        "name": "sort",
+        "in": "query",
+        "description": "Sort order for returned news items.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "RELEVANCE",
+            "LATEST",
+            "TOPIC"
+          ],
+          "default": "RELEVANCE"
+        }
+      },
+      "apikey": {
+        "name": "apikey",
+        "in": "query",
+        "required": true,
+        "description": "Your Alpha Vantage API key.",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "StockPrice": {
+        "type": "object",
+        "description": "A single stock price observation for a timestamp.",
+        "properties": {
+          "open": {
+            "type": "string"
+          },
+          "high": {
+            "type": "string"
+          },
+          "low": {
+            "type": "string"
+          },
+          "close": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "open",
+          "high",
+          "low",
+          "close",
+          "volume"
+        ]
+      },
+      "TechnicalIndicator": {
+        "type": "object",
+        "description": "A single technical indicator value for a timestamp.",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "CompanyOverview": {
+        "type": "object",
+        "description": "Company overview and fundamental metrics for a stock symbol.",
+        "properties": {
+          "Symbol": {
+            "type": "string"
+          },
+          "AssetType": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Description": {
+            "type": "string"
+          },
+          "CIK": {
+            "type": "string"
+          },
+          "Exchange": {
+            "type": "string"
+          },
+          "Currency": {
+            "type": "string"
+          },
+          "Country": {
+            "type": "string"
+          },
+          "Sector": {
+            "type": "string"
+          },
+          "Industry": {
+            "type": "string"
+          },
+          "Address": {
+            "type": "string"
+          },
+          "FiscalYearEnd": {
+            "type": "string"
+          },
+          "MarketCapitalization": {
+            "type": "string"
+          },
+          "EBITDA": {
+            "type": "string"
+          },
+          "PERatio": {
+            "type": "string"
+          },
+          "PEGRatio": {
+            "type": "string"
+          },
+          "BookValue": {
+            "type": "string"
+          },
+          "DividendPerShare": {
+            "type": "string"
+          },
+          "DividendYield": {
+            "type": "string"
+          },
+          "EPS": {
+            "type": "string"
+          },
+          "RevenueTTM": {
+            "type": "string"
+          },
+          "GrossProfitTTM": {
+            "type": "string"
+          },
+          "ProfitMargin": {
+            "type": "string"
+          },
+          "OperatingMarginTTM": {
+            "type": "string"
+          },
+          "ReturnOnAssetsTTM": {
+            "type": "string"
+          },
+          "ReturnOnEquityTTM": {
+            "type": "string"
+          },
+          "RevenuePerShareTTM": {
+            "type": "string"
+          },
+          "QuarterlyEarningsGrowthYOY": {
+            "type": "string"
+          },
+          "QuarterlyRevenueGrowthYOY": {
+            "type": "string"
+          },
+          "AnalystTargetPrice": {
+            "type": "string"
+          },
+          "Beta": {
+            "type": "string"
+          },
+          "WeekHigh52": {
+            "type": "string"
+          },
+          "WeekLow52": {
+            "type": "string"
+          },
+          "SharesOutstanding": {
+            "type": "string"
+          }
+        }
+      },
+      "NewsArticle": {
+        "type": "object",
+        "description": "A news article returned by the news sentiment endpoint.",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "time_published": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "summary": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "category_within_source": {
+            "type": "string"
+          },
+          "source_domain": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "topic": {
+                  "type": "string"
+                },
+                "relevance_score": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "overall_sentiment_score": {
+            "type": "string"
+          },
+          "overall_sentiment_label": {
+            "type": "string"
+          },
+          "ticker_sentiment": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ticker": {
+                  "type": "string"
+                },
+                "relevance_score": {
+                  "type": "string"
+                },
+                "ticker_sentiment_score": {
+                  "type": "string"
+                },
+                "ticker_sentiment_label": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NewsSentimentResponseSchema": {
+        "type": "object",
+        "description": "A news sentiment response object.",
+        "properties": {
+          "items": {
+            "type": "integer"
+          },
+          "sentiment_score_definition": {
+            "type": "string"
+          },
+          "relevance_score_definition": {
+            "type": "string"
+          },
+          "feed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewsArticle"
+            }
+          }
+        }
+      },
+      "MarketStatus": {
+        "type": "object",
+        "description": "Market status for one region or market.",
+        "properties": {
+          "market_type": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "primary_exchanges": {
+            "type": "string"
+          },
+          "local_open": {
+            "type": "string"
+          },
+          "local_close": {
+            "type": "string"
+          },
+          "current_status": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      },
+      "SectorPerformance": {
+        "type": "object",
+        "description": "Sector performance metric.",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "performance": {
+            "type": "string"
+          }
+        }
+      },
+      "TopMovers": {
+        "type": "object",
+        "description": "Top gaining, losing, or most actively traded stock.",
+        "properties": {
+          "ticker": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "change_amount": {
+            "type": "string"
+          },
+          "change_percentage": {
+            "type": "string"
+          },
+          "volume": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Error response returned by the API.",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "DailyTimeSeriesResponse": {
+        "description": "Successful daily time series response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "1. Information": {
+                      "type": "string"
+                    },
+                    "2. Symbol": {
+                      "type": "string"
+                    },
+                    "3. Last Refreshed": {
+                      "type": "string"
+                    },
+                    "4. Output Size": {
+                      "type": "string"
+                    },
+                    "5. Time Zone": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Time Series (Daily)": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/StockPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "IntradayTimeSeriesResponse": {
+        "description": "Successful intraday time series response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "1. Information": {
+                      "type": "string"
+                    },
+                    "2. Symbol": {
+                      "type": "string"
+                    },
+                    "3. Last Refreshed": {
+                      "type": "string"
+                    },
+                    "4. Interval": {
+                      "type": "string"
+                    },
+                    "5. Output Size": {
+                      "type": "string"
+                    },
+                    "6. Time Zone": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Time Series (5min)": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/StockPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "WeeklyTimeSeriesResponse": {
+        "description": "Successful weekly time series response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "1. Information": {
+                      "type": "string"
+                    },
+                    "2. Symbol": {
+                      "type": "string"
+                    },
+                    "3. Last Refreshed": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Weekly Time Series": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/StockPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "MonthlyTimeSeriesResponse": {
+        "description": "Successful monthly time series response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "1. Information": {
+                      "type": "string"
+                    },
+                    "2. Symbol": {
+                      "type": "string"
+                    },
+                    "3. Last Refreshed": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Monthly Time Series": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/StockPrice"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TechnicalIndicatorResponse": {
+        "description": "Successful technical indicator response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "1: Symbol": {
+                      "type": "string"
+                    },
+                    "2: Indicator": {
+                      "type": "string"
+                    },
+                    "3: Last Refreshed": {
+                      "type": "string"
+                    },
+                    "4: Interval": {
+                      "type": "string"
+                    },
+                    "5: Time Period": {
+                      "type": "integer"
+                    },
+                    "6: Series Type": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Technical Analysis: SMA": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/TechnicalIndicator"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CompanyOverviewResponse": {
+        "description": "Successful company overview response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CompanyOverview"
+            }
+          }
+        }
+      },
+      "EarningsResponse": {
+        "description": "Successful earnings response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "symbol": {
+                  "type": "string"
+                },
+                "annualEarnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fiscalDateEnding": {
+                        "type": "string"
+                      },
+                      "reportedEPS": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "quarterlyEarnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fiscalDateEnding": {
+                        "type": "string"
+                      },
+                      "reportedDate": {
+                        "type": "string"
+                      },
+                      "reportedEPS": {
+                        "type": "string"
+                      },
+                      "estimatedEPS": {
+                        "type": "string"
+                      },
+                      "surprise": {
+                        "type": "string"
+                      },
+                      "surprisePercentage": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NewsSentimentResponse": {
+        "description": "Successful news sentiment response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NewsSentimentResponseSchema"
+            }
+          }
+        }
+      },
+      "TopMoversResponse": {
+        "description": "Successful top movers response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "information": {
+                      "type": "string"
+                    },
+                    "last_updated": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "top_gainers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopMovers"
+                  }
+                },
+                "top_losers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopMovers"
+                  }
+                },
+                "most_actively_traded": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopMovers"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SectorPerformanceResponse": {
+        "description": "Successful sector performance response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Meta Data": {
+                  "type": "object",
+                  "properties": {
+                    "Information": {
+                      "type": "string"
+                    },
+                    "Last Refreshed": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "Sector Performance": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SectorPerformance"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "MarketStatusResponse": {
+        "description": "Successful market status response.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "endpoint": {
+                  "type": "string"
+                },
+                "markets": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MarketStatus"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "RateLimitExceeded": {
+        "description": "Too many requests.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}
