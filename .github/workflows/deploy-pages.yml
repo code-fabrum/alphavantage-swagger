@@ -37,12 +37,12 @@ jobs:
 
       - name: Build site
         run: |
-          ruby scripts/build-openapi-json.rb /docs/openapi.yaml docs/openapi.json
+          ruby scripts/build-openapi-json.rb docs/openapi.yaml docs/openapi.json
 
           mkdir -p _site
 
-          cp /docs/index.html _site/index.html
-          cp /docs/openapi.yaml _site/openapi.yaml
+          cp docs/index.html _site/index.html
+          cp docs/openapi.yaml _site/openapi.yaml
           cp docs/openapi.json _site/openapi.json
 
       - name: Debug output
