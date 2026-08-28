@@ -18,7 +18,7 @@ This repository contains an OpenAPI 3.1 specification for the Alpha Vantage mark
 
 All requests require an `apikey` query parameter.
 
-Example:
+Example:-
 
 ```bash
 curl "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=YOUR_API_KEY"
