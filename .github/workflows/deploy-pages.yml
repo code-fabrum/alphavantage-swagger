@@ -30,24 +30,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-
       - name: Build site
         run: |
-          ruby scripts/build-openapi-json.rb docs/openapi.yaml docs/openapi.json
-
           mkdir -p _site
+          cp -R docs/. _site/
 
-          cp docs/index.html _site/index.html
-          cp docs/openapi.yaml _site/openapi.yaml
-          cp docs/openapi.json _site/openapi.json
-
-      - name: Debug output
+      - name: Verify site output
         run: |
-          ls -R _site
+          test -f _site/index.html
+          test -f _site/openapi.json
+          test -f _site/swagger-ui-bundle.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
