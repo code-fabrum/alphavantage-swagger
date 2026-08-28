@@ -2,7 +2,8 @@ name: Deploy interactive API documentation
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -16,27 +17,42 @@ concurrency:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Build Pages artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Build site
         run: |
           ruby scripts/build-openapi-json.rb openapi.yaml openapi.json
+
           mkdir -p _site
+
           cp docs/index.html _site/index.html
           cp openapi.yaml _site/openapi.yaml
           cp openapi.json _site/openapi.json
+
+      - name: Debug output
+        run: |
+          ls -R _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
           path: _site
-          overwrite: true
 
       - name: Deploy to GitHub Pages
         id: deployment
