@@ -14,18 +14,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
-      # Step 2: Connect and sync files to the external hosting server
-      - name: Sync Files via SFTP/SSH
-        uses: easingthemes/ssh-deploy@v4
+      # Step 2: Upload the documentation using explicit FTPS encryption.
+      - name: Deploy documentation via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SERVER_USER }}
-          REMOTE_PORT: "22" 
-          SOURCE: "docs/" # Syncs the whole repo. Change to "dist/" if you build a framework site
-          TARGET: "domains/av.fabrumholdings.com/public_html" # Adjust this to your hosting root folder
-          ARGS: "-rltgoDzv --delete" # --delete removes old files on the server not present in GitHub
-
+          server: ftps://${{ secrets.FTPS_HOST }}
+          username: ${{ secrets.FTPS_USERNAME }}
+          password: ${{ secrets.FTPS_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./docs/
+          server-dir: domains/av.fabrumholdings.com/public_html/
+          dangerous-clean-slate: false
 
       - name: Deployment Complete
         run: echo "Website deployed successfully"
