@@ -1,51 +1,30 @@
-name: Deploy interactive API documentation
+name: Deploy to External Hosting
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+      - main # Triggers deployment when you push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      # Step 1: Download the source code from your repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build site
-        run: |
-          mkdir -p _site
-          cp -R docs/. _site/
-
-      - name: Verify site output
-        run: |
-          test -f _site/index.html
-          test -f _site/openapi.json
-          test -f _site/swagger-ui-bundle.js
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+      # Step 2: Connect and sync files to the external hosting server
+      - name: Sync Files via SFTP/SSH
+        uses: easingthemes/ssh-deploy@v5
         with:
-          path: _site
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          SOURCE: "docs/" # Syncs the whole repo. Change to "dist/" if you build a framework site
+          TARGET: "domains/av.fabrumholdings.com/public_html" # Adjust this to your hosting root folder
+          ARGS: "-rltgoDzv --delete" # --delete removes old files on the server not present in GitHub
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+
+      - name: Deployment Complete
+        run: echo "Website deployed successfully"
