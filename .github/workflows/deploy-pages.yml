@@ -21,7 +21,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USER }}
-          REMOTE_PORT: "2222" 
+          REMOTE_PORT: "22" 
           SOURCE: "docs/" # Syncs the whole repo. Change to "dist/" if you build a framework site
           TARGET: "domains/av.fabrumholdings.com/public_html" # Adjust this to your hosting root folder
           ARGS: "-rltgoDzv --delete" # --delete removes old files on the server not present in GitHub
