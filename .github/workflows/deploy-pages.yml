@@ -16,9 +16,9 @@ jobs:
 
       # Step 2: Upload the documentation using explicit FTPS encryption.
       - name: Deploy documentation via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ftps://${{ secrets.FTPS_HOST }}
+          server: ${{ secrets.FTPS_HOST }}
           username: ${{ secrets.FTPS_USERNAME }}
           password: ${{ secrets.FTPS_PASSWORD }}
           protocol: ftps
