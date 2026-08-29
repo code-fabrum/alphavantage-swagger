@@ -12,11 +12,11 @@ jobs:
     steps:
       # Step 1: Download the source code from your repository
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Step 2: Connect and sync files to the external hosting server
       - name: Sync Files via SFTP/SSH
-        uses: easingthemes/ssh-deploy@v5
+        uses: easingthemes/ssh-deploy@v4.4.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
