@@ -3,14 +3,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fabrum Holdings | Alpha Vantage API</title>
     <link rel="stylesheet" type="text/css" href="./swagger-ui.css" />
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+      .site-header {
+        background: #0f172a;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        padding: 16px 24px;
+      }
+      .site-header strong { font-size: 1.25rem; }
+      .site-header span { color: #cbd5e1; margin-left: 12px; }
+      .swagger-ui .topbar { display: none; }
+    </style>
   </head>
 
   <body>
+    <header class="site-header">
+      <strong>Fabrum Holdings</strong><span>Alpha Vantage API Reference</span>
+    </header>
     <div id="swagger-ui"></div>
     <script src="./swagger-ui-bundle.js" charset="UTF-8"> </script>
     <script src="./swagger-ui-standalone-preset.js" charset="UTF-8"> </script>

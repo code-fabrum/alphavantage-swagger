@@ -1,4 +1,4 @@
-# Alpha Vantage Swagger
+# Fabrum Holdings — Alpha Vantage API
 
 This repository contains an OpenAPI 3.1 specification for the Alpha Vantage market data API.
 
@@ -26,7 +26,7 @@ curl "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&ap
 
 ## Interactive API documentation
 
-The repository includes an interactive Swagger UI site with **Authorize** and **Try it out** support. It uses the real Alpha Vantage `/query` endpoint when a request is sent.
+The repository includes an interactive Fabrum Holdings API reference with **Authorize** and **Try it out** support. It uses the real Alpha Vantage `/query` endpoint when a request is sent.
 
 After publishing, the documentation is available at:
 
@@ -42,5 +42,5 @@ After publishing, the documentation is available at:
 ## Notes
 
 - The spec is designed as a reusable contract for tooling, code generation, and API exploration.
-- The interactive site loads Swagger UI from a CDN and needs an internet connection.
+- The interactive site uses locally hosted documentation assets and needs no external UI CDN.
 - You can also import [openapi.yaml](openapi.yaml) into other OpenAPI tools or code generators.
