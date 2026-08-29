@@ -16,7 +16,7 @@ jobs:
 
       # Step 2: Connect and sync files to the external hosting server
       - name: Sync Files via SFTP/SSH
-        uses: easingthemes/ssh-deploy@v4.4.0
+        uses: easingthemes/ssh-deploy@v4
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
