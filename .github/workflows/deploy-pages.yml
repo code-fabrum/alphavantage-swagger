@@ -24,7 +24,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./docs/
-          server-dir: domains/av.fabrumholdings.com/public_html/
+          server-dir: public_html/
           dangerous-clean-slate: false
 
       - name: Deployment Complete
