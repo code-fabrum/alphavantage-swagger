@@ -30,7 +30,7 @@ The repository includes an interactive Fabrum Holdings API reference with **Auth
 
 After publishing, the documentation is available at:
 
-`https://<github-owner>.github.io/<repository-name>/`
+`https://github.com/code-fabrum/alphavantage-swagger`
 
 ### Publish with GitHub Pages
 
@@ -44,3 +44,6 @@ After publishing, the documentation is available at:
 - The spec is designed as a reusable contract for tooling, code generation, and API exploration.
 - The interactive site uses locally hosted documentation assets and needs no external UI CDN.
 - You can also import [openapi.yaml](openapi.yaml) into other OpenAPI tools or code generators.
+
+
+
